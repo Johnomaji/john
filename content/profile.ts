@@ -176,12 +176,11 @@ export const profile = {
   /** Canonical production URL. Update before deploying. */
   siteUrl: "https://johnomaji.com",
   /**
-   * Professional photo. Drop a file at public/johnny.jpg (or .webp) and
-   * update this path. Until then the hero shows a typographic monogram.
-   * TODO: add your photo.
+   * Professional photo, served from public/. Set to null to fall back to the
+   * typographic monogram in the hero.
    */
-  photo: null as string | null,
-  photoAlt: "John Omaji",
+  photo: "/johnny.jpg" as string | null,
+  photoAlt: "John Omaji smiling, wearing a green kaftan and patterned cap",
   /**
    * CV PDF served from /public. Leave as-is and the "Download CV" button
    * routes to /cv, where the browser's print dialog produces the PDF.

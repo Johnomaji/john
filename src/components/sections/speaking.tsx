@@ -4,11 +4,13 @@ import {
   speakingTopics,
   upcomingEvents,
 } from "@/content/profile";
+import { sectionIndex } from "@/lib/section-index";
+import { cn } from "@/lib/utils";
 import { Section } from "../ui/section";
 import { Reveal } from "../ui/reveal";
 import { Pill } from "../ui/pill";
 import { ButtonLink } from "../ui/button";
-import { YouTubeEmbed, VideoPlaceholder } from "../ui/youtube-embed";
+import { YouTubeEmbed } from "../ui/youtube-embed";
 import { ArrowUpRight, Calendar, Download, Pin } from "../icons";
 
 export function Speaking() {
@@ -96,7 +98,13 @@ export function Speaking() {
       )}
 
       <Reveal>
-        <div className="mt-20 grid gap-10 rounded-[var(--radius-card)] border border-line bg-paper-sunken p-8 md:grid-cols-2 md:items-center md:p-10">
+        <div
+          className={cn(
+            "mt-20 grid gap-10 rounded-[var(--radius-card)] border border-line bg-paper-sunken p-8 md:p-10",
+            // Without a reel the panel is one column rather than a half-empty two.
+            speaking.reel.youtubeId && "md:grid-cols-2 md:items-center",
+          )}
+        >
           <div>
             <h3 className="text-[length:var(--text-h2)]">
               {speaking.booking.title}
@@ -125,16 +133,14 @@ export function Speaking() {
             </div>
           </div>
 
-          <div>
-            {speaking.reel.youtubeId ? (
+          {speaking.reel.youtubeId && (
+            <div>
               <YouTubeEmbed
                 youtubeId={speaking.reel.youtubeId}
                 title={speaking.reel.caption}
               />
-            ) : (
-              <VideoPlaceholder label="Speaker reel — add a video id in profile.ts" />
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </Reveal>
     </Section>

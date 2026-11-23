@@ -8,6 +8,7 @@ import {
   experience,
   profile,
   skillGroups,
+  speaking,
   speakingTopics,
   ventures,
 } from "@/content/profile";
@@ -256,7 +257,10 @@ function Skills() {
 function Speaking() {
   return (
     <section className="print-avoid-break mt-9 print:mt-6">
-      <SectionTitle>Speaking topics</SectionTitle>
+      <SectionTitle>Speaking</SectionTitle>
+      <p className="mb-3 text-sm leading-relaxed text-ink-soft print:text-black">
+        {speaking.cvSummary} Topics:
+      </p>
       <ul className="space-y-1.5">
         {speakingTopics.map((topic) => (
           <li

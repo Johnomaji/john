@@ -143,17 +143,9 @@ function PortraitFrame() {
           />
         ) : (
           <div className="grain absolute inset-0 grid place-items-center bg-[linear-gradient(145deg,var(--paper-sunken),var(--ochre-wash))]">
-            <div className="text-center">
-              <p className="font-display text-[7rem] leading-none text-ochre/85 select-none">
-                JO
-              </p>
-              <p className="eyebrow mt-4">Photo slot</p>
-              <p className="mt-2 px-8 text-xs leading-relaxed text-muted">
-                Add a portrait to{" "}
-                <code className="font-mono text-ochre-ink">public/</code> and set{" "}
-                <code className="font-mono text-ochre-ink">profile.photo</code>
-              </p>
-            </div>
+            <p className="font-display text-[7rem] leading-none text-ochre/85 select-none">
+              JO
+            </p>
           </div>
         )}
       </div>
