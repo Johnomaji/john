@@ -1,26 +1,285 @@
 @import "tailwindcss";
 
+/* next-themes sets class="dark" on <html>, so dark: must follow the class, not the OS. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------------------------------------------------------------------------
+   Design tokens — "warm ochre + ink"
+   Light is warm paper; dark is near-black ink. Ochre is the single accent.
+   Edit these two blocks to re-skin the entire site.
+--------------------------------------------------------------------------- */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --paper: #faf8f4;
+  --paper-raised: #ffffff;
+  --paper-sunken: #f2eee6;
+  --ink: #121110;
+  --ink-soft: #3a3734;
+  --muted: #6b6560;
+  --line: #e4ded3;
+  --line-strong: #d3cabb;
+  --ochre: #b4833a;
+  --ochre-ink: #8c5a2b; /* AA-contrast variant for small text on paper */
+  --ochre-wash: #f6edde;
+  --shadow-color: 32 24 12;
+}
+
+.dark {
+  --paper: #0e0d0c;
+  --paper-raised: #171513;
+  --paper-sunken: #0a0908;
+  --ink: #f2efe9;
+  --ink-soft: #cfc8be;
+  --muted: #9a938a;
+  --line: #2a2621;
+  --line-strong: #3b352d;
+  --ochre: #d9a855;
+  --ochre-ink: #e0b76f;
+  --ochre-wash: #231c11;
+  --shadow-color: 0 0 0;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-paper: var(--paper);
+  --color-paper-raised: var(--paper-raised);
+  --color-paper-sunken: var(--paper-sunken);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ochre: var(--ochre);
+  --color-ochre-ink: var(--ochre-ink);
+  --color-ochre-wash: var(--ochre-wash);
+
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono-jb), ui-monospace, monospace;
+
+  --radius-card: 12px;
+  --radius-field: 8px;
+
+  --text-display: clamp(2.75rem, 9vw, 7rem);
+  --text-h1: clamp(2.25rem, 6vw, 4rem);
+  --text-h2: clamp(1.875rem, 4vw, 3rem);
+  --text-h3: clamp(1.375rem, 2.2vw, 1.75rem);
+  --text-lead: clamp(1.0625rem, 1.4vw, 1.3125rem);
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    border-color: var(--line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Sticky header clearance for #anchor jumps. */
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    font-feature-settings: "kern", "liga", "calt";
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.04;
+    letter-spacing: -0.022em;
+    font-variation-settings: "SOFT" 28, "WONK" 1;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: var(--ochre);
+    color: var(--paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ochre);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  input,
+  textarea,
+  button,
+  select {
+    font: inherit;
+    color: inherit;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .container-page {
+    width: 100%;
+    max-width: 76rem;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-page {
+      padding-inline: 2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-page {
+      padding-inline: 3rem;
+    }
+  }
+
+  /* Small uppercase label used above section titles and on meta rows. */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .rule {
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      var(--line-strong),
+      color-mix(in oklab, var(--line) 40%, transparent)
+    );
+  }
+
+  /* Ochre underline that grows on hover — used for inline and nav links. */
+  .link-underline {
+    position: relative;
+    text-decoration: none;
+  }
+
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 1px;
+    background-color: var(--ochre);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s var(--ease-out-soft);
+  }
+
+  .link-underline:hover::after,
+  .link-underline:focus-visible::after {
+    transform: scaleX(1);
+  }
+
+  .text-gradient-ochre {
+    background-image: linear-gradient(
+      100deg,
+      var(--ochre) 0%,
+      color-mix(in oklab, var(--ochre) 55%, var(--ink)) 70%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Paper grain — a single inline SVG turbulence, no image request. */
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .dark .grain::before {
+    opacity: 0.05;
+    mix-blend-mode: screen;
+  }
+}
+
+@utility hairline-top {
+  border-top: 1px solid var(--line);
+}
+
+/* ---------------------------------------------------------------------------
+   Print — drives the /cv page. A4 with real margins, no site chrome, no ink
+   wasted on dark backgrounds.
+--------------------------------------------------------------------------- */
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm 14mm 12mm;
+  }
+
+  html {
+    font-size: 10.5pt;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-page {
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .print-avoid-break {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .print-break-before {
+    break-before: page;
+  }
+
+  a {
+    color: #000 !important;
+    text-decoration: none !important;
+  }
+
+  .grain::before {
+    display: none !important;
+  }
 }
