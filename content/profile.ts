@@ -26,7 +26,7 @@ export interface SocialLink {
   label: string;
   /** Full URL, or a mailto: link for email. */
   href: string;
-  /** Shown in the footer under the label, e.g. "@abijay440". */
+  /** Shown in the footer under the label, e.g. "@Johnomaji". */
   handle?: string;
 }
 
@@ -496,7 +496,7 @@ export const projects: Project[] = [
   //   stack: ["Next.js", "PostgreSQL"],
   //   year: "2025",
   //   liveHref: "https://…",
-  //   repoHref: "https://github.com/abijay440/…",
+  //   repoHref: "https://github.com/Johnomaji/…",
   // },
 ];
 
@@ -585,15 +585,15 @@ export const contact = {
 } as const;
 
 /**
- * TODO: fill in every href below. Set a platform's href to null to hide it.
- * Only the GitHub handle is confirmed.
+ * TODO: fill in the remaining hrefs. A platform with an empty href is hidden
+ * everywhere. With no handle, the CV prints the URL instead.
  */
 export const socials: SocialLink[] = [
   {
     platform: "github",
     label: "GitHub",
-    href: "https://github.com/abijay440",
-    handle: "@abijay440",
+    href: "https://github.com/Johnomaji",
+    handle: "@Johnomaji",
   },
   {
     platform: "youtube",
@@ -605,8 +605,7 @@ export const socials: SocialLink[] = [
   {
     platform: "linkedin",
     label: "LinkedIn",
-    // TODO: add your LinkedIn profile URL and handle.
-    href: "",
+    href: "https://www.linkedin.com/in/omaji-john-b63885210",
     handle: undefined,
   },
   {

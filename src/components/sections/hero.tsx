@@ -10,11 +10,11 @@ export function Hero() {
       {/* Warm bloom behind the headline, plus a faint ruled grid. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -top-40 -left-32 size-[42rem] rounded-full bg-[radial-gradient(circle,color-mix(in_oklab,var(--ochre)_22%,transparent),transparent_68%)] blur-3xl"
+        className="pointer-events-none absolute -top-40 -left-32 size-168 rounded-full bg-[radial-gradient(circle,color-mix(in_oklab,var(--ochre)_22%,transparent),transparent_68%)] blur-3xl"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-[0.07] [background-image:linear-gradient(to_right,var(--line-strong)_1px,transparent_1px)] [background-size:7rem_100%]"
+        className="pointer-events-none absolute inset-0 opacity-[0.07] bg-[linear-gradient(to_right,var(--line-strong)_1px,transparent_1px)]"
       />
 
       <div className="container-page relative">
@@ -32,12 +32,12 @@ export function Hero() {
               </Reveal>
             )}
 
-            <h1 className="mt-7 text-[length:var(--text-display)] leading-[0.92]">
+            <h1 className="mt-7 text-(length:--text-display) leading-[0.92]">
               <RevealWords text={profile.name} />
             </h1>
 
             <Reveal delay={0.35} y={14}>
-              <p className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 font-display text-[length:var(--text-h3)] text-ink-soft italic">
+              <p className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 font-display text-(length:--text-h3) text-ink-soft italic">
                 {profile.positioning.map((word, i) => (
                   <span key={word} className="inline-flex items-center gap-3">
                     {i > 0 && (
@@ -52,7 +52,7 @@ export function Hero() {
             </Reveal>
 
             <Reveal delay={0.45}>
-              <p className="mt-8 max-w-xl text-[length:var(--text-lead)] leading-relaxed text-muted">
+              <p className="mt-8 max-w-xl text-(length:--text-lead) leading-relaxed text-muted">
                 {profile.heroBio}
               </p>
             </Reveal>
@@ -129,9 +129,9 @@ function PortraitFrame() {
       {/* Offset ochre rule, letterpress-plate feel. */}
       <div
         aria-hidden="true"
-        className="absolute -right-3 -bottom-3 size-full rounded-[var(--radius-card)] border border-ochre/45"
+        className="absolute -right-3 -bottom-3 size-full rounded-(--radius-card) border border-ochre/45"
       />
-      <div className="relative aspect-4/5 overflow-hidden rounded-[var(--radius-card)] border border-line bg-paper-sunken">
+      <div className="relative aspect-4/5 overflow-hidden rounded-(--radius-card) border border-line bg-paper-sunken">
         {profile.photo ? (
           <Image
             src={profile.photo}

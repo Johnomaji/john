@@ -48,7 +48,7 @@ export default function CvPage() {
         </div>
       </div>
 
-      <main className="print-page container-page max-w-[52rem] py-12 md:py-16">
+      <main className="print-page container-page max-w-208 py-12 md:py-16">
         <article>
           <Header />
           <Summary />
@@ -84,7 +84,7 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 function Header() {
   return (
     <header className="print-avoid-break border-b-2 border-ink pb-7 print:border-black">
-      <h1 className="text-[length:var(--text-h1)] leading-none print:text-[26pt]">
+      <h1 className="text-(length:--text-h1) leading-none print:text-[26pt]">
         {profile.name}
       </h1>
       <p className="mt-3 font-display text-lg text-ochre-ink italic print:text-[12pt] print:text-black">

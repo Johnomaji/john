@@ -43,7 +43,7 @@ has a comment showing the shape to add when you have the real thing.
 
 - [ ] **`education` → B.Sc.** — years, e.g. `period: "2012 — 2016"`. Shown without dates until set.
 - [x] **`profile.photo`** — portrait at `public/johnny.jpg`. It's only 400×400, so it looks soft on retina screens; replace it with a larger original (around 1200×1500) when you have one.
-- [ ] **`socials`** — YouTube, LinkedIn, and X have `href: ""` and stay hidden until filled. GitHub (`abijay440`) is already real.
+- [ ] **`socials`** — YouTube and X have `href: ""` and stay hidden until filled. GitHub and LinkedIn are set.
 - [ ] **`speakingEvents`** — the DevFest talk and bootcamps as entries (talk title, date, link) to show the Events list.
 - [ ] **`speaking.reel.youtubeId`** — a speaker reel; the booking panel gains a video column when set.
 - [ ] **`speaking.onePagerHref`** — speaker one-sheet PDF in `public/`.
